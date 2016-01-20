@@ -1,0 +1,67 @@
+<?php require_once('../Connections/easyshop.php'); ?>
+<?php
+session_start();
+if($_SESSION['MM_Username']<>"admin"){
+exit;
+}
+mysql_select_db($database_easyshop, $easyshop);
+$query_rs = "SELECT * FROM a_account ORDER BY a_account ASC";
+$rs = mysql_query($query_rs, $easyshop) or die(mysql_error());
+$row_rs = mysql_fetch_assoc($rs);
+$totalRows_rs = mysql_num_rows($rs);
+?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>會員管理</title>
+<style type="text/css">
+<!--
+.style1 {font-size: small}
+body {
+	background-image: url(../user/image/thumb_1185022872.gif);
+}
+.style2 {color: #FFFFFF}
+.style3 {color: #FFFFFF; font-family: "標楷體"; }
+.style4 {font-family: "標楷體"}
+.style5 {color: #FF0000}
+-->
+</style>
+</head>
+
+<body>
+
+<div align="center" class="style1"><span class="style5">會員管理
+  <?php require_once('system_top.php'); ?>
+  </span>
+  <table width="903" border="1" align="center">
+    <tr bgcolor="#CCCCFF">
+      <td width="112" height="20" bgcolor="#FF0000"><div align="center" class="style3"><span class="style7">帳號</span></div></td>
+      <td width="88" bgcolor="#FF0000"><div align="center" class="style3"><span class="style7">密碼</span></div></td>
+      <td width="111" bgcolor="#FF0000"><div align="center" class="style3"><span class="style7">姓名</span></div></td>
+      <td width="187" bgcolor="#FF0000"><div align="center" class="style3"><span class="style7">住址</span></div></td>
+      <td width="98" bgcolor="#FF0000"><div align="center" class="style3"><span class="style7">電話</span></div></td>
+      <td width="96" bgcolor="#FF0000"><div align="center" class="style3"><span class="style7">E-MAIL</span></div></td>
+      <td width="95" bgcolor="#FF0000"><div align="center" class="style3"><span class="style9">ATM</span></div></td>
+      <td width="64" bgcolor="#FF0000"><div align="center"><span class="style2"><span class="style4"></span></span></div></td>
+    </tr>
+    <?php do { ?>
+      <tr>
+        <td><div align="center" class="style4"><?php echo $row_rs['a_account']; ?></div></td>
+        <td><div align="center" class="style4"><?php echo $row_rs['a_pass']; ?></div></td>
+        <td><span class="style4"><?php echo $row_rs['a_name']; ?></span></td>
+        <td><span class="style4"><?php echo $row_rs['a_address']; ?></span></td>
+        <td><span class="style4"><?php echo $row_rs['a_phone']; ?></span></td>
+        <td><span class="style4"><?php echo $row_rs['a_sogi']; ?></span></td>
+        <td><span class="style4"><?php echo $row_rs['atm']; ?></span></td>
+        <td><span class="style4"><a href="s_edit_account.php?id=<?php echo $row_rs['a_id']; ?>">修改</a><br>
+        <a href="s_account_del.php?id=<?php echo $row_rs['a_id']; ?>">刪除</a> </span></td>
+      </tr>
+      <?php } while ($row_rs = mysql_fetch_assoc($rs)); ?>
+</table>
+</div>
+<p align="center" class="style1">
+</body>
+</html>
+<?php
+mysql_free_result($rs);
+?>

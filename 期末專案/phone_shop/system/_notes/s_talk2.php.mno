@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rs" value="name:t_id;datatype:int,name:t_name;datatype:string,name:t_text;datatype:string,name:t_date;datatype:string,name:t_re;datatype:string" />
+	<infoitem key="UD_rs2" value="name:re_id;datatype:int,name:t_id;datatype:string,name:re_name;datatype:string,name:re_text;datatype:string,name:re_date;datatype:date" />
+</info>

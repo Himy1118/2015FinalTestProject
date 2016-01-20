@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<info>
+	<infoitem key="UD_rs" value="name:sys_account;datatype:string,name:sys_pass;datatype:string" />
+</info>
